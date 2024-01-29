@@ -1,0 +1,110 @@
+version: '3'
+
+services:
+  worker1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python docker_transform.py /app/data/LABEVENTS_thread_1.csv output_results_1.csv /app/data/PATIENTS.csv worker1
+    volumes:
+      - ../lab_event_spllited_10:/app/data
+      - ../results:/app/results  
+      - ../dockertime:/app/timestamps  
+
+  worker2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python docker_transform.py /app/data/LABEVENTS_thread_2.csv output_results_2.csv /app/data/PATIENTS.csv worker2
+    volumes:
+      - ../lab_event_spllited_10:/app/data
+      - ../results:/app/results
+      - ../dockertime:/app/timestamps  
+
+  worker3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python docker_transform.py /app/data/LABEVENTS_thread_3.csv output_results_3.csv /app/data/PATIENTS.csv worker3
+    volumes:
+      - ../lab_event_spllited_10:/app/data
+      - ../results:/app/results  
+      - ../dockertime:/app/timestamps  
+
+
+
+  worker4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python docker_transform.py /app/data/LABEVENTS_thread_4.csv output_results_4.csv /app/data/PATIENTS.csv worker4
+    volumes:
+      - ../lab_event_spllited_10:/app/data
+      - ../results:/app/results
+      - ../dockertime:/app/timestamps
+
+  worker5:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python docker_transform.py /app/data/LABEVENTS_thread_5.csv output_results_5.csv /app/data/PATIENTS.csv worker5
+    volumes:
+      - ../lab_event_spllited_10:/app/data
+      - ../results:/app/results
+      - ../dockertime:/app/timestamps
+
+  worker6:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python docker_transform.py /app/data/LABEVENTS_thread_6.csv output_results_6.csv /app/data/PATIENTS.csv worker6
+    volumes:
+      - ../lab_event_spllited_10:/app/data
+      - ../results:/app/results
+      - ../dockertime:/app/timestamps
+
+  worker7:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python docker_transform.py /app/data/LABEVENTS_thread_7.csv output_results_7.csv /app/data/PATIENTS.csv worker7
+    volumes:
+      - ../lab_event_spllited_10:/app/data
+      - ../results:/app/results
+      - ../dockertime:/app/timestamps
+
+  worker8:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python docker_transform.py /app/data/LABEVENTS_thread_8.csv output_results_8.csv /app/data/PATIENTS.csv worker8
+    volumes:
+      - ../lab_event_spllited_10:/app/data
+      - ../results:/app/results
+      - ../dockertime:/app/timestamps
+
+  worker9:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      command: python docker_transform.py /app/data/LABEVENTS_thread_9.csv output_results_9.csv /app/data/PATIENTS.csv worker9
+      volumes:
+        - ../lab_event_spllited_10:/app/data
+        - ../results:/app/results
+        - ../dockertime:/app/timestamps
+
+  worker10:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      command: python docker_transform.py /app/data/LABEVENTS_thread_10.csv output_results_10.csv /app/data/PATIENTS.csv worker10
+      volumes:
+        - ../lab_event_spllited_10:/app/data
+        - ../results:/app/results
+        - ../dockertime:/app/timestamps
+
+    
+ 
+
+volumes:
+  results: 

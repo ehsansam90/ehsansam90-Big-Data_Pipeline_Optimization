@@ -1,0 +1,58 @@
+version: '2'
+
+services:
+  spark:
+    image: docker.io/bitnami/spark:3.5
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - SPARK_USER=spark
+    ports:
+      - '8080:8080'
+
+  worker1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../lab_event_spllited_several_4/20000000:/app/data
+      - ../results_dockerspark:/app/results
+      - ../dockersparktime:/app/timestamps
+
+    command: spark-submit /app/docker_transform_pyspark.py /app/data/LABEVENTS_thread_1.csv /app/results/output_results_1.csv /app/data/PATIENTS.csv worker1
+
+  worker2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../lab_event_spllited_several_4/20000000:/app/data
+      - ../results_dockerspark:/app/results
+      - ../dockersparktime:/app/timestamps
+
+    command: spark-submit /app/docker_transform_pyspark.py /app/data/LABEVENTS_thread_2.csv /app/results/output_results_2.csv /app/data/PATIENTS.csv worker2
+
+  worker3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../lab_event_spllited_several_4/20000000:/app/data
+      - ../results_dockerspark:/app/results
+      - ../dockersparktime:/app/timestamps
+
+    command: spark-submit /app/docker_transform_pyspark.py /app/data/LABEVENTS_thread_3.csv /app/results/output_results_3.csv /app/data/PATIENTS.csv worker3
+
+  worker4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../lab_event_spllited_several_4/20000000:/app/data
+      - ../results_dockerspark:/app/results
+      - ../dockersparktime:/app/timestamps
+
+    command: spark-submit /app/docker_transform_pyspark.py /app/data/LABEVENTS_thread_4.csv /app/results/output_results_4.csv /app/data/PATIENTS.csv worker4 20000000
